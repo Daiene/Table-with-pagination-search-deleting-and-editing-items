@@ -1,3 +1,14 @@
+// Definir quantidade máxima de caracteres
+const characterLimit = 55;
+var tableTitles = document.querySelectorAll('.tableTitle');
+
+tableTitles.forEach(function (title) {
+  var textContent = title.textContent;
+  if (textContent.length > characterLimit) {
+    title.textContent = textContent.substr(0, characterLimit) + '...';
+  }
+});
+
 // Filtro de posts pelo input de busca
 var filterInput = document.getElementById("site-search");
 var paginationElement = document.querySelector(".pagination");
@@ -33,7 +44,7 @@ var filteredRows = Array.from(rows).filter(
 );
 var deleteIcon = document.querySelectorAll(".fa-trash-can");
 
-var rowsPerPage = 12;
+var rowsPerPage = 11;
 var currentPage = 1;
 
 document

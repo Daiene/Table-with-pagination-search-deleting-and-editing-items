@@ -100,7 +100,7 @@ input:focus {
 #tablePostManager {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 2em;
+  margin-bottom: 1.8em;
 }
 
 #tablePostManager tr {
@@ -129,12 +129,16 @@ input:focus {
   color: #797979;
 }
 
-.visits {
+.postInformation i {
+  font-size: 12px;
+}
+
+#tablePostManager .visits {
   min-width: 7em;
 }
 
-.data {
-  min-width: 9.5em;
+#tablePostManager .data {
+  min-width: 330px;
 }
 
 .pagination {
@@ -142,7 +146,7 @@ input:focus {
   width: 100%;
   justify-content: end;
   gap: 5px;
-  margin-bottom: 2em;
+  margin-bottom: 0.5em;
 }
 
 .pagination button {
