@@ -1,0 +1,19 @@
+{
+  "name": "table-with-pagination-search-deleting-and-editing-items",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "table",
+    "pagination",
+    "search",
+    "delete",
+    "edit",
+    "items"
+  ],
+  "author": "Daiene Batagioti",
+  "license": "ISC"
+}
