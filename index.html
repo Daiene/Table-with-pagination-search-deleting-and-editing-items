@@ -1,287 +1,48 @@
 <!Doctype html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Post management</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Post management</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
-  <link href="./style.css" rel="stylesheet">
-  <script src="./script.js" defer></script>
-</head>
+    <link href="./style.css" rel="stylesheet">
+    <script src="./src/script.js" defer></script>
+  </head>
 
-<body>
-  <main>
-    <div class="information">
-      <h1>Post management</h1>
-      <div class="informationContainer">
-        <div class="searchInput">
-          <input type="search" id="site-search" name="search" placeholder="Search by post title" />
-          <i class="fa-solid fa-magnifying-glass"></i>
+  <body>
+    <main>
+      <div class="information">
+        <h1>Post management</h1>
+        <div class="informationContainer">
+          <div class="searchInput">
+            <input type="search" id="site-search" name="search" placeholder="Search by post title" />
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <button class="principalButton">Create post</button>
         </div>
-        <button class="principalButton">Create post</button>
       </div>
-    </div>
 
-    <table id="tablePostManager">
-      <tr id="titleManager">
-        <th>Title</th>
-        <th class="postInformation">Created in <i class="fa fa-fw fa-sort"></i></th>
-        <th class="postInformation visits">Visits<i class="fa fa-fw fa-sort"></i></th>
-        <th></th>
-        <th></th>
-      </tr>
-      <tr>
-        <td class="tableTitle">I Know Why The Caged Bird Sings by Maya Angelou.</td>
-        <td class="postInformation data">January 9th, 2024 at 06:00 p.m.</td>
-        <td class="postInformation visits">200</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">East of Eden by John Steinbeck.</td>
-        <td class="postInformation data">January 8th, 2024 at 05:00 p.m.</td>
-        <td class="postInformation visits">100</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">The Sun Also Rises by Ernest Hemingway.</td>
-        <td class="postInformation data">January 8th, 2024 at 04:00 p.m.</td>
-        <td class="postInformation visits">90</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">Do Androids Dream of Electric Sheep? by Philip K. Dick.</td>
-        <td class="postInformation data">January 7th, 2024 at 03:00 p.m.</td>
-        <td class="postInformation visits">80</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">The Curious Incident of the Dog in the Night-Time by Mark Haddon.</td>
-        <td class="postInformation data">January 7th, 2024 at 02:00 p.m.</td>
-        <td class="postInformation visits">400</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">Cloudy with a Chance of Meatballs by Judi Barrett.</td>
-        <td class="postInformation data">January 6th, 2024 at 01:00 p.m.</td>
-        <td class="postInformation visits">300</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">Pride and Prejudice and Zombies by Seth Grahame-Smith.</td>
-        <td class="postInformation data">January 6th, 2024 at 12:00 p.m.</td>
-        <td class="postInformation visits">200</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">The House of Mirth by Edith Wharton.</td>
-        <td class="postInformation data">January 5th, 2024 at 07:00 p.m.</td>
-        <td class="postInformation visits">100</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">Are You There, Vodka? It's Me, Chelsea by Chelsea Handler.</td>
-        <td class="postInformation data">January 5th, 2024 at 06:00 p.m.</td>
-        <td class="postInformation visits">90</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">And Then There Were None by Agatha Christie.</td>
-        <td class="postInformation data">January 4th, 2024 at 05:00 p.m.</td>
-        <td class="postInformation visits">80</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">Their Eyes Were Watching God by Zora Neale Hurston.</td>
-        <td class="postInformation data">January 4th, 2024 at 04:00 p.m.</td>
-        <td class="postInformation visits">400</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">The Devil Wears Prada by Lauren Weisberger.</td>
-        <td class="postInformation data">January 3th, 2024 at 03:00 p.m.</td>
-        <td class="postInformation visits">300</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">Brave New World by Aldous Huxley.</td>
-        <td class="postInformation data">January 3th, 2024 at 02:00 p.m.</td>
-        <td class="postInformation visits">200</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">Bury My Heart at Wounded Knee by Dee Brown.</td>
-        <td class="postInformation data">January 2th, 2024 at 01:00 p.m.</td>
-        <td class="postInformation visits">100</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">The Man Who Was Thursday by G.K. Chesterton.</td>
-        <td class="postInformation data">January 2th, 2024 at 12:00 p.m.</td>
-        <td class="postInformation visits">90</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">Love in the Time of Cholera by Gabriel García Márquez.</td>
-        <td class="postInformation data">January 1th, 2024 at 12:00 p.m.</td>
-        <td class="postInformation visits">80</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">Buddy Holly Is Alive and Well on Ganymede by Bradley Denton.</td>
-        <td class="postInformation data">January 1th, 2024 at 11:00 a.m.</td>
-        <td class="postInformation visits">300</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">Everyone Poops by Taro Gomi.</td>
-        <td class="postInformation data">December 30th, 2023 at 06:00 p.m.</td>
-        <td class="postInformation visits">200</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle titleValue">As I Lay Dying by William Faulkner.</td>
-        <td class="postInformation data">December 30th, 2023 at 05:00 p.m.</td>
-        <td class="postInformation visits">100</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">All Quiet on the Western Front by Erich Maria Remarque.</td>
-        <td class="postInformation data">December 30th, 2023 at 04:00 p.m.</td>
-        <td class="postInformation visits">90</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">The Particular Sadness of Lemon Cake by Aimee Bender.</td>
-        <td class="postInformation data">December 29th, 2023 at 03:00 p.m.</td>
-        <td class="postInformation visits">80</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">And Then There Were None by Agatha Christie.</td>
-        <td class="postInformation data">December 29th, 2023 at 02:00 p.m.</td>
-        <td class="postInformation visits">400</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle"> Fight Club by Chuck Palahniuk.</td>
-        <td class="postInformation data">December 28th, 2023 at 01:00 p.m.</td>
-        <td class="postInformation visits">300</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle"> The Man Who Was Thursday: A Nightmare by G.K. Chesterton.</td>
-        <td class="postInformation data">December 28th, 2023 at 12:00 p.m.</td>
-        <td class="postInformation visits">200</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle"> Hard-Boiled Wonderland and the End of the World by Haruki Murakami.</td>
-        <td class="postInformation data">December 27th, 2023 at 07:00 p.m.</td>
-        <td class="postInformation visits">100</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">The Catcher in the Rye
-          by J.D. Salinger.</td>
-        <td class="postInformation data">December 27th, 2023 at 06:00 p.m.</td>
-        <td class="postInformation visits">90</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle"> The Moon Is a Harsh Mistress
-          by Robert A. Heinlein.</td>
-        <td class="postInformation data">December 27th, 2023 at 05:00 p.m.</td>
-        <td class="postInformation visits">80</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">The Haunted Vagina by Carlton Mellick III.</td>
-        <td class="postInformation data">December 26th, 2023 at 04:00 p.m.</td>
-        <td class="postInformation visits">400</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">Fear and Loathing in Las Vegas
-          by Hunter S. Thompson.</td>
-        <td class="postInformation data">December 26th, 2023 at 03:00 p.m.</td>
-        <td class="postInformation visits">300</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">American Psycho by Bret Easton Ellis.</td>
-        <td class="postInformation data">December 26th, 2023 at 02:00 p.m.</td>
-        <td class="postInformation visits">200</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">Requiem for a Dream by Hubert Selby Jr.</td>
-        <td class="postInformation data">December 26th, 2023 at 01:00 p.m.</td>
-        <td class="postInformation visits">100</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">The Importance of Being Earnest by Oscar Wilde.</td>
-        <td class="postInformation data">December 25th, 2023 at 05:00 p.m.</td>
-        <td class="postInformation visits">90</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">The Electric Kool-Aid Acid Test
-          by Tom Wolfe.</td>
-        <td class="postInformation data">December 25th, 2023 at 04:00 p.m.</td>
-        <td class="postInformation visits">80</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-      <tr>
-        <td class="tableTitle">Brave New World
-          by Aldous Huxley.</td>
-        <td class="postInformation data">December 25th, 2023 at 03:00 p.m.</td>
-        <td class="postInformation visits">300</td>
-        <td><i class="fa-solid fa-pencil"></i></td>
-        <td><i class="fa-regular fa-trash-can"></i></td>
-      </tr>
-    </table>
+      <table id="tablePostManager">
+        <thead>
+          <tr id="titleManager">
+            <th>Title</th>
+            <th>Created in <i class="fa fa-fw fa-sort"></i></th>
+            <th>Visits<i class="fa fa-fw fa-sort"></i></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
 
-    <div class="pagination">
-      <button class="previous">Previous</button>
-      <button class="next">Next</button>
-    </div>
-  </main>
-</body>
+      <div class="pagination">
+        <button class="previous">Previous</button>
+        <button class="next">Next</button>
+      </div>
+    </main>
+  </body>
 
 </html>

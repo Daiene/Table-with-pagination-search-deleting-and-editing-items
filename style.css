@@ -119,26 +119,24 @@ input:focus {
   font-weight: 700;
 }
 
+#titleManager th i {
+    font-size: 12px;
+}
+
 #tablePostManager tr td,
 #tablePostManager tr th {
   padding-left: 1em;
   padding-right: 1em;
 }
 
-#tablePostManager .postInformation {
-  color: #797979;
-}
-
-.postInformation i {
-  font-size: 12px;
-}
-
 #tablePostManager .visits {
-  min-width: 7em;
+    min-width: 7em;
+    color: #797979;
 }
 
 #tablePostManager .data {
-  min-width: 330px;
+    min-width: 330px;
+    color: #797979;
 }
 
 .pagination {
