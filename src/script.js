@@ -1,48 +1,50 @@
-import { tableContentRows } from "./predefinedList.js";
-import { limitTitleCharacters, showRows, filterPostsByTitle } from "./tableUtils.js";
-import { updatePagination, createPaginationButtons, updatePaginationButtons, checkAndTogglePagination } from "./pagination.js";
-import { deletePost } from "./deleteRows.js";
+import { tableRows } from "./tableRows.js";
+import { showRows, characters, inputSearch } from "./tableUtils.js";
+import { createPaginationButtons, updatePaginationButtons, prevButton, nextButton, checkAndTogglePagination } from "./pagination.js";
+import { deleteRows } from "./deleteRows.js";
+import { sortRows } from "./orderValues.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-    var table = document.getElementById("tablePostManager");
-    var rows = table.querySelectorAll("tr");
-    var filteredRows = Array.from(rows).filter((row) => row.querySelectorAll("td").length > 0);
-    var deleteIcon = document.querySelectorAll(".fa-trash-can");
-    var characterLimit = 55;
-    var tableTitles = document.querySelectorAll('.tableTitle');
-    var filterInput = document.getElementById("site-search");
-    var paginationElement = document.querySelector(".pagination");
-    var rowTitleSearch = document.querySelectorAll("tbody tr");
-    var rowsPerPage = 11;
-    var currentPage = 1;
+    const tableBody = document.getElementById("tablePostManager").getElementsByTagName('tbody')[0];
+    tableRows(tableBody);
 
-    filterInput.addEventListener("input", function () {
-        const filterValue = filterInput.value.trim().toLowerCase();
-        filterPostsByTitle(rowTitleSearch, filterValue, paginationElement, updatePagination);
-    });
+    const rowsPerPage = 12;
+    const characterLimit = 32;
+    let currentPage = 1;
+    let rows = tableBody.querySelectorAll('tbody tr');
+    let filteredRows = Array.from(rows).filter(row => row.querySelectorAll('td').length > 0);
+    let totalRows = filteredRows.length;
+    let totalPages = Math.ceil(totalRows / rowsPerPage);
+    let paginationElement = document.querySelector(".pagination");
+    let deleteIcon = document.querySelectorAll('.fa-trash-can');
+    let tableTitles = document.querySelectorAll('.tableTitle');
+    let filterInput = document.getElementById('site-search');
 
-    document.querySelector(".pagination .previous").addEventListener("click", function () {
-        if (currentPage > 1) {
-            currentPage--;
-            updatePagination();
-        }
-    });
+    const config = {
+        currentPage,
+        rowsPerPage,
+        rows,
+        filteredRows,
+        totalRows,
+        totalPages,
+        paginationElement,
+        deleteIcon,
+        showRows,
+        updatePaginationButtons,
+        checkAndTogglePagination,
+        tableTitles,
+        characterLimit,
+        filterInput
+    };
 
-    document.querySelector(".pagination .next").addEventListener("click", function () {
-        var totalRows = filteredRows.length;
-        var totalPages = Math.ceil(totalRows / rowsPerPage);
-
-        if (currentPage < totalPages) {
-            currentPage++;
-            updatePagination();
-        }
-    });
-
-    limitTitleCharacters(tableTitles, characterLimit);
-    showRows(filteredRows, currentPage, rowsPerPage);
-    updatePagination(filteredRows, currentPage, rowsPerPage, updatePaginationButtons, checkAndTogglePagination);
-    createPaginationButtons(filteredRows, rowsPerPage, currentPage, updatePaginationButtons);
-    deletePost(deleteIcon, filteredRows, currentPage, rowsPerPage, updatePagination);
-    updatePaginationButtons(filteredRows, rowsPerPage, currentPage);
-    checkAndTogglePagination(filteredRows, rowsPerPage);
+    showRows(config);
+    createPaginationButtons(config);
+    updatePaginationButtons(config);
+    prevButton(config);
+    nextButton(config);
+    checkAndTogglePagination(config);
+    characters(config);
+    inputSearch(config);
+    deleteRows(config);
+    sortRows(config);
 });

@@ -1,33 +1,74 @@
-// Adiciona evento de clique ao ícone de classificação
-const sortIcon = document.querySelectorAll(".fa-sort");
-let sortDirection = 'asc'; // Estado inicial: ordenação crescente
+// export function orderValues(config) {
+//     const {
+//         sortOrder,
+//         updatePagination
+        
+//     } = config;
+    
+//     const sortIcon = document.getElementById("sortVisits");
 
-sortIcon.forEach(icon => {
-    icon.addEventListener("click", function () {
-        const columnIndex = Array.from(this.parentNode.parentNode.children).indexOf(this.parentNode);
+//     sortIcon.addEventListener("click", function () {
+//         config.sortOrder = config.sortOrder === "asc" ? "desc" : "asc";
 
-        // Obtém os valores de visitas da coluna clicada
-        const visitsValues = Array.from(document.querySelectorAll(`.visits`)).map(cell => parseInt(cell.textContent));
+//         sortRows(config);
+//         updatePagination(config);
+//     });
+// }
 
-        // Ordena as linhas com base nos valores de visitas e na direção da ordenação
-        const sortedRows = Array.from(filteredRows).sort((a, b) => {
-            const aValue = parseInt(a.children[columnIndex].textContent);
-            const bValue = parseInt(b.children[columnIndex].textContent);
+// export function sortRows(config) {
+//     const {
+//         sortOrder,
+//         filteredRows,
+//         showRows,
+//         updatePaginationButtons
+//     } = config;
+    
+//     var sortedRows = Array.from(filteredRows);
 
-            if (sortDirection === 'asc') {
-                return aValue - bValue;
-            } else {
-                return bValue - aValue;
-            }
+//     sortedRows.sort(function (rowA, rowB) {
+//         var visitsA = parseInt(rowA.querySelector(".visits").textContent);
+//         var visitsB = parseInt(rowB.querySelector(".visits").textContent);
+
+//         if (sortOrder === "asc") {
+//             return visitsA - visitsB;
+//         } else {
+//             return visitsB - visitsA;
+//         }
+//     });
+
+//     config.filteredRows = sortedRows;
+    
+//     showRows(config);
+//     updatePaginationButtons(config);
+// }
+
+export function sortRows(config) {
+    const { showRows, filteredRows } = config;
+    const sortIcon = document.getElementById("sortVisits");
+
+    let ascendingOrder = true;
+
+    sortIcon.addEventListener("click", function () {
+        const tableBody = document.getElementById("tablePostManager").getElementsByTagName('tbody')[0];
+
+        const sortedRows = Array.from(config.filteredRows);
+
+        sortedRows.sort((a, b) => {
+            const numA = parseInt(a.querySelector('.visits').textContent);
+            const numB = parseInt(b.querySelector('.visits').textContent);
+
+            return ascendingOrder ? numA - numB : numB - numA;
         });
 
-        // Atualiza as linhas na tabela com as linhas ordenadas
-        table.querySelector("tbody").innerHTML = "";
-        sortedRows.forEach(row => {
-            table.querySelector("tbody").appendChild(row);
-        });
+        ascendingOrder = !ascendingOrder;
 
-        // Alterna a direção da ordenação para o próximo clique
-        sortDirection = (sortDirection === 'asc') ? 'desc' : 'asc';
+        const fragment = document.createDocumentFragment();
+        sortedRows.forEach(row => fragment.appendChild(row));
+
+        tableBody.innerHTML = '';
+        tableBody.appendChild(fragment);
+
+        // Exibe as linhas paginadas após a ordenação
+        config.showRows(config);
     });
-});
+}

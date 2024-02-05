@@ -139,9 +139,15 @@ input:focus {
     color: #797979;
 }
 
+table .tableTitle {
+    min-width: 150px;
+    width: 52%;
+}
+
 .pagination {
   height: 2.5em;
   width: 100%;
+  display: flex;
   justify-content: end;
   gap: 5px;
   margin-bottom: 0.5em;

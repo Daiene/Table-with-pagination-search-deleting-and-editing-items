@@ -1,60 +1,94 @@
-export function updatePagination(filteredRows, currentPage, rowsPerPage, updatePaginationButtons, checkAndTogglePagination) {
-    showRows(filteredRows, currentPage, rowsPerPage);
-    updatePaginationButtons(filteredRows, rowsPerPage, currentPage); // Ajuste na ordem dos argumentos
-    checkAndTogglePagination(filteredRows, rowsPerPage);
-}
+export function createPaginationButtons(config) {
+    const {
+        totalPages,
+        currentPage,
+        showRows,
+        updatePaginationButtons,
+        paginationElement
+    } = config;
 
-export function createPaginationButtons(filteredRows, rowsPerPage, currentPage, updatePaginationButtons) {
-    var totalRows = filteredRows.length;
-    var totalPages = Math.ceil(totalRows / rowsPerPage);
-
-    var paginationDiv = document.querySelector(".pagination");
-
-    for (var i = 1; i <= totalPages; i++) {
-        var button = document.createElement("button");
-        button.classList.add("pag");
-        if (i === currentPage) {
-            button.classList.add("active");
+    for (var i = 1; i <= config.totalPages; i++) {
+        var button = document.createElement('button');
+        button.classList.add('pag');
+        if (i === config.currentPage) {
+            button.classList.add('active');
         }
         button.innerText = i;
-        button.addEventListener("click", function () {
-            currentPage = parseInt(this.innerText);
-            showRows(filteredRows, currentPage, rowsPerPage);
-            updatePaginationButtons();
+        button.addEventListener('click', function () {
+            config.currentPage = parseInt(this.innerText);
+            config.showRows(config);
+            config.updatePaginationButtons(config);
         });
-        paginationDiv.insertBefore(button, paginationDiv.querySelector(".next"));
+        config.paginationElement.insertBefore(button, config.paginationElement.querySelector('.next'));
     }
 }
 
-export function updatePaginationButtons(filteredRows, rowsPerPage, currentPage) {
-    var buttons = document.querySelectorAll(".pagination .pag");
-    var totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+export function updatePaginationButtons(config) {
+    const {
+        totalPages,
+        currentPage
+    } = config;
 
+    let buttons = document.querySelectorAll('.pagination .pag');
     buttons.forEach(function (button) {
         var pageNumber = parseInt(button.innerText);
-        if (pageNumber <= totalPages) {
-            button.style.display = "";
+        if (pageNumber <= config.totalPages) {
+            button.style.display = '';
 
-            if (pageNumber === currentPage) {
-                button.classList.add("active");
+            if (pageNumber === config.currentPage) {
+                button.classList.add('active');
             } else {
-                button.classList.remove("active");
-            }
+                button.classList.remove('active');
+            } 
         } else {
-            button.style.display = "none";
+            button.style.display = 'none';
         }
     });
 }
 
-export function checkAndTogglePagination(filteredRows, rowsPerPage) {
-    var totalRows = filteredRows.length;
-    var totalPages = Math.ceil(totalRows / rowsPerPage);
 
-    var paginationElement = document.querySelector(".pagination");
+export function prevButton(config) {
+    const {
+        currentPage,
+        showRows,
+        updatePaginationButtons
+    } = config;
 
-    if (totalPages > 1) {
-        paginationElement.style.display = "flex";
+    document.querySelector('.pagination .previous').addEventListener('click', function () {
+        if (config.currentPage > 1) {
+            config.currentPage--;
+            config.showRows(config);
+            config.updatePaginationButtons(config);
+        }
+    });
+}
+
+export function nextButton(config) {
+    const {
+        currentPage,
+        totalPages,
+        showRows,
+        updatePaginationButtons
+    } = config;
+    
+    document.querySelector('.pagination .next').addEventListener('click', function () {
+        if (config.currentPage < config.totalPages) {
+            config.currentPage++;
+            config.showRows(config);
+            config.updatePaginationButtons(config);
+        }
+    });
+}
+
+export function checkAndTogglePagination(config) {
+    const {
+        totalPages,
+        paginationElement
+    } = config;
+    
+    if (config.totalPages > 1) {
+        config.paginationElement.style.display = "flex";
     } else {
-        paginationElement.style.display = "none";
+        config.paginationElement.style.display = "none";
     }
 }

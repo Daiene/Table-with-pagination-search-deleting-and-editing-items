@@ -1,45 +1,81 @@
-export function limitTitleCharacters(tableTitles, characterLimit) {
-    tableTitles.forEach(function (title) {
-        var textContent = title.textContent;
-        if (textContent.length > characterLimit) {
-            title.textContent = textContent.substr(0, characterLimit) + '...';
-        }
-    });
-}
+export function showRows(config) {
+    const {
+        currentPage,
+        rowsPerPage,
+        filteredRows,
+        checkAndTogglePagination
+    } = config;
 
-export function showRows(filteredRows, currentPage, rowsPerPage) {
-    if (filteredRows.length < (currentPage - 1) * rowsPerPage) {
-        currentPage = Math.ceil(filteredRows.length / rowsPerPage);
-    }
+    let startIndex = (config.currentPage - 1) * config.rowsPerPage;
+    let endIndex = startIndex + config.rowsPerPage;
 
-    var startIndex = (currentPage - 1) * rowsPerPage;
-    var endIndex = startIndex + rowsPerPage;
-
-    filteredRows.forEach(function (row, index) {
+    config.filteredRows.forEach(function (row, index) {
         if (index >= startIndex && index < endIndex) {
-            row.style.display = "";
+            row.style.display = '';
         } else {
-            row.style.display = "none";
+            row.style.display = 'none';
         }
     });
+
+    config.checkAndTogglePagination(config);
 }
 
-export function filterPostsByTitle(rowTitleSearch, filterValue, paginationElement, updatePagination) {
-    rowTitleSearch.forEach((row, index) => {
-        var titleValue = row.querySelector(".tableTitle");
+export function characters(config) {
+    const {
+        tableTitles,
+        characterLimit
+    } = config;
 
-        if (titleValue) {
-            const titleText = titleValue.textContent.trim().toLowerCase();
-            if (titleText.includes(filterValue)) {
-                row.style.display = "";
-                paginationElement.style.display = "none";
-            } else {
-                row.style.display = "none";
+    if (config.tableTitles) { 
+        config.tableTitles.forEach(function (title) {
+            const textContent = title.textContent;
+            const newTextContent = textContent.substr(0, characterLimit) + '...';
+
+            function sizeOfThings() {
+                let windowWidth = screen.width;
+
+                if (windowWidth < 992) {
+                    if (textContent.length > characterLimit) {
+                        title.textContent = newTextContent;
+                    }
+                } else {
+                    title.textContent = textContent;
+                }
             }
+
+            window.addEventListener('resize', function () {
+                sizeOfThings();
+            });
+        });
+    }
+}
+
+export function inputSearch(config) {
+    const {
+        filterInput,
+        rows,
+        paginationElement,
+        showRows
+    } = config;
+
+    config.filterInput.addEventListener('input', function () {
+        if (config.filterInput.value !== '') {
+            let filterValue = config.filterInput.value.trim().toLowerCase();
+
+            config.rows.forEach((row, index) => {
+                const titleCell = row.querySelector('.tableTitle');
+                const titleText = titleCell.textContent.trim().toLowerCase();
+
+                if (titleText.includes(filterValue)) {
+                    row.style.display = '';
+                    config.paginationElement.style.display = "none";
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        } else {
+            config.showRows(config);
+            config.paginationElement.style.display = '';
         }
     });
-
-    if (filterValue === "") {
-        updatePagination();
-    }
 }
