@@ -1,11 +1,4 @@
 export function showRows(config) {
-    const {
-        currentPage,
-        rowsPerPage,
-        filteredRows,
-        checkAndTogglePagination
-    } = config;
-
     let startIndex = (config.currentPage - 1) * config.rowsPerPage;
     let endIndex = startIndex + config.rowsPerPage;
 
@@ -21,21 +14,16 @@ export function showRows(config) {
 }
 
 export function characters(config) {
-    const {
-        tableTitles,
-        characterLimit
-    } = config;
-
     if (config.tableTitles) { 
         config.tableTitles.forEach(function (title) {
             const textContent = title.textContent;
-            const newTextContent = textContent.substr(0, characterLimit) + '...';
+            const newTextContent = textContent.substr(0, config.characterLimit) + '...';
 
             function sizeOfThings() {
                 let windowWidth = screen.width;
 
                 if (windowWidth < 992) {
-                    if (textContent.length > characterLimit) {
+                    if (textContent.length > config.characterLimit) {
                         title.textContent = newTextContent;
                     }
                 } else {
@@ -51,13 +39,6 @@ export function characters(config) {
 }
 
 export function inputSearch(config) {
-    const {
-        filterInput,
-        rows,
-        paginationElement,
-        showRows
-    } = config;
-
     config.filterInput.addEventListener('input', function () {
         if (config.filterInput.value !== '') {
             let filterValue = config.filterInput.value.trim().toLowerCase();

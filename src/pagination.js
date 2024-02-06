@@ -1,12 +1,4 @@
 export function createPaginationButtons(config) {
-    const {
-        totalPages,
-        currentPage,
-        showRows,
-        updatePaginationButtons,
-        paginationElement
-    } = config;
-
     for (var i = 1; i <= config.totalPages; i++) {
         var button = document.createElement('button');
         button.classList.add('pag');
@@ -24,11 +16,6 @@ export function createPaginationButtons(config) {
 }
 
 export function updatePaginationButtons(config) {
-    const {
-        totalPages,
-        currentPage
-    } = config;
-
     let buttons = document.querySelectorAll('.pagination .pag');
     buttons.forEach(function (button) {
         var pageNumber = parseInt(button.innerText);
@@ -48,12 +35,6 @@ export function updatePaginationButtons(config) {
 
 
 export function prevButton(config) {
-    const {
-        currentPage,
-        showRows,
-        updatePaginationButtons
-    } = config;
-
     document.querySelector('.pagination .previous').addEventListener('click', function () {
         if (config.currentPage > 1) {
             config.currentPage--;
@@ -64,13 +45,6 @@ export function prevButton(config) {
 }
 
 export function nextButton(config) {
-    const {
-        currentPage,
-        totalPages,
-        showRows,
-        updatePaginationButtons
-    } = config;
-    
     document.querySelector('.pagination .next').addEventListener('click', function () {
         if (config.currentPage < config.totalPages) {
             config.currentPage++;
@@ -81,11 +55,6 @@ export function nextButton(config) {
 }
 
 export function checkAndTogglePagination(config) {
-    const {
-        totalPages,
-        paginationElement
-    } = config;
-    
     if (config.totalPages > 1) {
         config.paginationElement.style.display = "flex";
     } else {

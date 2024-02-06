@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let filterInput = document.getElementById('site-search');
 
     const config = {
+        tableBody,
         currentPage,
         rowsPerPage,
         rows,

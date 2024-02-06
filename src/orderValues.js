@@ -1,74 +1,38 @@
-// export function orderValues(config) {
-//     const {
-//         sortOrder,
-//         updatePagination
-        
-//     } = config;
-    
-//     const sortIcon = document.getElementById("sortVisits");
-
-//     sortIcon.addEventListener("click", function () {
-//         config.sortOrder = config.sortOrder === "asc" ? "desc" : "asc";
-
-//         sortRows(config);
-//         updatePagination(config);
-//     });
-// }
-
-// export function sortRows(config) {
-//     const {
-//         sortOrder,
-//         filteredRows,
-//         showRows,
-//         updatePaginationButtons
-//     } = config;
-    
-//     var sortedRows = Array.from(filteredRows);
-
-//     sortedRows.sort(function (rowA, rowB) {
-//         var visitsA = parseInt(rowA.querySelector(".visits").textContent);
-//         var visitsB = parseInt(rowB.querySelector(".visits").textContent);
-
-//         if (sortOrder === "asc") {
-//             return visitsA - visitsB;
-//         } else {
-//             return visitsB - visitsA;
-//         }
-//     });
-
-//     config.filteredRows = sortedRows;
-    
-//     showRows(config);
-//     updatePaginationButtons(config);
-// }
-
 export function sortRows(config) {
-    const { showRows, filteredRows } = config;
-    const sortIcon = document.getElementById("sortVisits");
-
-    let ascendingOrder = true;
-
-    sortIcon.addEventListener("click", function () {
-        const tableBody = document.getElementById("tablePostManager").getElementsByTagName('tbody')[0];
-
-        const sortedRows = Array.from(config.filteredRows);
-
-        sortedRows.sort((a, b) => {
-            const numA = parseInt(a.querySelector('.visits').textContent);
-            const numB = parseInt(b.querySelector('.visits').textContent);
-
-            return ascendingOrder ? numA - numB : numB - numA;
+    let ascending = true;
+    
+    var sortBy = (criteria) => {
+        let visitRowPairs = [];
+        
+        config.rows.forEach(row => {
+            let visitElement = row.querySelector('.visits');
+            let visitValue = parseInt(visitElement.textContent);
+            visitRowPairs.push({ visit: visitValue, row: row });
         });
 
-        ascendingOrder = !ascendingOrder;
+        visitRowPairs.sort((a, b) => {
+            if (ascending) {
+                return a.visit - b.visit;
+            } else {
+                return b.visit - a.visit;
+            }
+        });
 
-        const fragment = document.createDocumentFragment();
-        sortedRows.forEach(row => fragment.appendChild(row));
+        config.tableBody.innerHTML = '';
 
-        tableBody.innerHTML = '';
-        tableBody.appendChild(fragment);
+        visitRowPairs.forEach(pair => {
+            config.tableBody.appendChild(pair.row);
+        });
 
-        // Exibe as linhas paginadas após a ordenação
+        config.filteredRows = visitRowPairs.map(pair => pair.row);
+    }
+
+    var columns = document.getElementById("sortVisits");
+
+    columns.addEventListener("click", (event) => {
+        var columnTitle = event.target.textContent;
+        sortBy(columnTitle);
+        ascending = !ascending;
         config.showRows(config);
-    });
+    })
 }

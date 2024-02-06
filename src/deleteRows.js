@@ -1,16 +1,4 @@
 export function deleteRows(config) {
-    const {
-        deleteIcon,
-        filteredRows,
-        totalRows,
-        totalPages,
-        rowsPerPage,
-        currentPage,
-        showRows,
-        updatePaginationButtons,
-        checkAndTogglePagination
-    } = config;
-
     config.deleteIcon.forEach(function (remove) {
         remove.addEventListener('click', function (e) {
             const target = e.target;
