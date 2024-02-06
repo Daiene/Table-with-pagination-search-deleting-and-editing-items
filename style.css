@@ -135,12 +135,12 @@ input:focus {
 }
 
 #tablePostManager .data {
-    min-width: 330px;
+    min-width: 130px;
     color: #797979;
 }
 
 table .tableTitle {
-    min-width: 150px;
+    min-width: 116px;
     width: 52%;
 }
 
@@ -211,7 +211,7 @@ table .tableTitle {
 }
 
 @media (max-width: 762px) {
-  .visits {
+  .visits, #sortVisits {
       display: none;
   }
 
