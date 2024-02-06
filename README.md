@@ -38,4 +38,4 @@ To get started with this project, follow these steps:
 Contributions are welcome! If you have any ideas for improvements or feature requests, feel free to open an issue or submit a pull request.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the ISC License.
